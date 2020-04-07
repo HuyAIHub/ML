@@ -10,9 +10,10 @@ print("----------")
 print(len(Y))
 # encoding categorical data(ma hoa va phan loai data)
 from sklearn.preprocessing import LabelEncoder,OneHotEncoder
+from sklearn.compose import ColumnTransformer
 leberencoder = LabelEncoder()
 X[:,3] = leberencoder.fit_transform(X[:,3])
-onehotencoder = OneHotEncoder(categorical_features=[3])
+onehotencoder = ColumnTransformer([("Geography", OneHotEncoder(), [1])], remainder = 'passthrough')
 X = onehotencoder.fit_transform(X).toarray()
 
 # avoiding dummy variable trap
@@ -28,7 +29,8 @@ result = linear.fit(x_train,y_train)
 acc = linear.score(x_test,y_test)
 # predict result
 result_predict = linear.predict(x_test)
-print(result_predict)
+for x in range(len(result_predict)):
+    print(result_predict[x],":",x_test[x],":",y_test)
 
 
 
