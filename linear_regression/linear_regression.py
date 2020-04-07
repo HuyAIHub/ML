@@ -9,4 +9,4 @@
 
 #dạng simple , đề bài : y = mx + b (m : weight , b : bias )
 
-
+import numpy as np
